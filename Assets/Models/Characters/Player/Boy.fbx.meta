@@ -310,19 +310,19 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BoyMaterial
-    second: {fileID: 2100000, guid: 266a31fbb2c83404fb90e0086bac42d8, type: 2}
+    second: {fileID: 2100000, guid: da03c3152c4303d4181bd7bed1035331, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: RCMaterial
-    second: {fileID: 2100000, guid: 899aa3c900032054baef6a3c8aa3ef0a, type: 2}
+    second: {fileID: 2100000, guid: f0ed438dcb6d6cd46a302578262119d4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: RCMaterialChrome
-    second: {fileID: 2100000, guid: 71616538b74802743811d9fb7a5b7ac7, type: 2}
+    second: {fileID: 2100000, guid: 9c6b459ed28b595439901478824169d8, type: 2}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 0
@@ -978,15 +978,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.7834777
-        functionName: DeathComplete
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: c32067ea884548644b13cf9baddd4573,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask:
       - path: 
         weight: 1
