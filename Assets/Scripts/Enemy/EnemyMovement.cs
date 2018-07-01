@@ -1,0 +1,35 @@
+﻿//This script controls the movement of the enemies. The enemy uses a navmesh agent to navigate the scene. 
+
+using UnityEngine;
+
+public class EnemyMovement : MonoBehaviour
+{
+	[SerializeField]
+	private Transform _target;
+	[SerializeField]
+	private float _updateDelay = 0.3f; //The delay between updating the navmesh agent (for efficiency)
+
+	private UnityEngine.AI.NavMeshAgent _navMeshAgent;
+	private float _interval;
+
+	//---------------------------------------------------------------------
+	// Messages
+	//---------------------------------------------------------------------
+	
+	private void Awake()
+	{
+		_navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+	}
+
+	private void Update()
+	{
+		if (_target == null) return;
+		
+		_interval += Time.deltaTime;
+		if (_interval < _updateDelay) return;
+		_interval = 0;
+		
+		_navMeshAgent.SetDestination(_target.position);
+	}
+}
+
