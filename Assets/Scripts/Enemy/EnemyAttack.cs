@@ -7,13 +7,13 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-	[SerializeField]
-	private PlayerHealth _player;					// Reference to the player health script
+	
 	[SerializeField] 
 	private float _timeBetweenAttacks = 0.5f;		// How much time goes by between each attack (the attack interval)
 	[SerializeField]
 	private int _attackDamage = 10;					// How much damage the enemy attacks for
 
+	private PlayerHealth _player;					// Reference to the player health script
 	private Animator _animator;						// Reference to the animator component
 	
 	private bool _canAttack;						// Can this enemy attack?
@@ -30,6 +30,11 @@ public class EnemyAttack : MonoBehaviour
 		_attackDelay = new WaitForSeconds(_timeBetweenAttacks);
 		//Get a reference to the animator component
 		_animator = GetComponent<Animator>();
+	}
+
+	private void Start()
+	{
+		_player = GameManager.Instance.Player;
 	}
 
 	//When this game object is enabled...

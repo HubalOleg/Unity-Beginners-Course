@@ -5,10 +5,9 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
 	[SerializeField]
-	private Transform _target;
-	[SerializeField]
 	private float _updateDelay = 0.3f; //The delay between updating the navmesh agent (for efficiency)
 
+	private Transform _target;
 	private UnityEngine.AI.NavMeshAgent _navMeshAgent;
 	private float _interval;
 
@@ -19,6 +18,11 @@ public class EnemyMovement : MonoBehaviour
 	private void Awake()
 	{
 		_navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+	}
+
+	private void Start()
+	{
+		_target = GameManager.Instance.Player.transform;
 	}
 
 	private void Update()
