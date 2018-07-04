@@ -2,8 +2,9 @@
 
 public class PlayerInput : MonoBehaviour
 {
-	private PlayerMovement _playerMovement;	//Reference to the player's movement script
-	private MouseLocation _mouseLocation;	//Reference to the mouse location script
+	private PlayerMovement _playerMovement;	// Reference to the player's movement script
+	private PlayerAttack _playerAttack;		// Reference to the player's attack script
+	private MouseLocation _mouseLocation;	// Reference to the mouse location script
 	
 	//---------------------------------------------------------------------
 	// Messages
@@ -13,6 +14,7 @@ public class PlayerInput : MonoBehaviour
 	{
 		//Grab the needed component references
 		_playerMovement = GetComponent<PlayerMovement>();
+		_playerAttack = GetComponent<PlayerAttack>();
 		_mouseLocation = GetComponent<MouseLocation>();
 	}
 
@@ -35,6 +37,11 @@ public class PlayerInput : MonoBehaviour
 			//Tell the player what direction to look
 			_playerMovement.LookDirection = lookPoint;
 		}
+		
+		if (_playerAttack == null) return;
+		
+		//If the player presses (or holds) Fire1, start firing
+		if (Input.GetButton("Fire1")) _playerAttack.Fire();
 	}
 }
 

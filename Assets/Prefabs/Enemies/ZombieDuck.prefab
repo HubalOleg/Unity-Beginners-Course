@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 136710177949586524}
   - component: {fileID: 114789126176457446}
   - component: {fileID: 114164606731304396}
+  - component: {fileID: 114362894903397242}
   m_Layer: 0
   m_Name: ZombieDuck
   m_TagString: Untagged
@@ -538,6 +539,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _updateDelay: 0.3
+--- !u!114 &114362894903397242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064441307621354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900cfdda1df08ca4bb5e43f3c806c045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Spawner: {fileID: 0}
+  _maxHealth: 100
+  _scoreValue: 10
+  _sinkSpeed: 2.5
+  _deathEffectTime: 2
 --- !u!114 &114789126176457446
 MonoBehaviour:
   m_ObjectHideFlags: 1

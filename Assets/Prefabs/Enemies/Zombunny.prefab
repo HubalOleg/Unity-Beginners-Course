@@ -475,6 +475,7 @@ GameObject:
   - component: {fileID: 136526997170238704}
   - component: {fileID: 114506020080566048}
   - component: {fileID: 114141411853414458}
+  - component: {fileID: 114208088156002956}
   m_Layer: 0
   m_Name: Zombunny
   m_TagString: Untagged
@@ -1147,6 +1148,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _updateDelay: 0.3
+--- !u!114 &114208088156002956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1792994370542616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900cfdda1df08ca4bb5e43f3c806c045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Spawner: {fileID: 0}
+  _maxHealth: 120
+  _scoreValue: 20
+  _sinkSpeed: 2.5
+  _deathEffectTime: 2
 --- !u!114 &114506020080566048
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -74,6 +74,17 @@ public class EnemyAttack : MonoBehaviour
 	}
 	
 	//---------------------------------------------------------------------
+	// Public
+	//---------------------------------------------------------------------
+	
+	//Called when the enemy needs to stop attacked (either it was defeated or the player was)
+	public void Defeated()
+	{
+		//Enemy can no longer attack
+		_canAttack = false;
+	}
+	
+	//---------------------------------------------------------------------
 	// Coroutines
 	//---------------------------------------------------------------------
 

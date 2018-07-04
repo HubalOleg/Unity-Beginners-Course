@@ -27,13 +27,24 @@ public class EnemyMovement : MonoBehaviour
 
 	private void Update()
 	{
-		if (_target == null) return;
+		if (_target == null || !_navMeshAgent.enabled) return;
 		
 		_interval += Time.deltaTime;
 		if (_interval < _updateDelay) return;
 		_interval = 0;
 		
 		_navMeshAgent.SetDestination(_target.position);
+	}
+	
+	//---------------------------------------------------------------------
+	// Public
+	//---------------------------------------------------------------------
+	
+	// Called when the enemy is defeated and can no longer move
+	public void Defeated()
+	{
+		//Disable the navmesh agent
+		_navMeshAgent.enabled = false;
 	}
 }
 

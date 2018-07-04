@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 136343867162217724}
   - component: {fileID: 114427905745597518}
   - component: {fileID: 114724736779404596}
+  - component: {fileID: 114697025219655052}
   m_Layer: 0
   m_Name: Hellephant
   m_TagString: Untagged
@@ -104,6 +105,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeBetweenAttacks: 1
   _attackDamage: 20
+--- !u!114 &114697025219655052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1427914754417240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900cfdda1df08ca4bb5e43f3c806c045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Spawner: {fileID: 0}
+  _maxHealth: 200
+  _scoreValue: 50
+  _sinkSpeed: 2.5
+  _deathEffectTime: 2
 --- !u!114 &114724736779404596
 MonoBehaviour:
   m_ObjectHideFlags: 1
