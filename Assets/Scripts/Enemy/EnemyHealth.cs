@@ -16,9 +16,12 @@ public class EnemyHealth : MonoBehaviour
 	[Header("Defeated Effects")]
 	[SerializeField] private float _sinkSpeed = 2.5f;			//How fast the enemy sinks into the ground		
 	[SerializeField] private float _deathEffectTime = 2f;		//How long it takes the enemy to play its full death sequence before being deactivated
+	[SerializeField] private AudioClip _deathClip;				//Audio clip of the death sound of the enemy
+	[SerializeField] private AudioClip _hurtClip;				//Audio clip of the hurt sound of the enemy
 	
 	private Animator _animator;									//Reference to the animator component
 	private CapsuleCollider _capsuleCollider;					//Reference to the capsule collider component
+	private AudioSource _audioSource;							//Reference to the audio source component
 	private EnemyAttack _enemyAttack;							//Reference to the enemy's attack script
 	private EnemyMovement _enemyMovement;						//Reference to the enemy's movement script
 
@@ -37,16 +40,18 @@ public class EnemyHealth : MonoBehaviour
 
 		_animator = GetComponent<Animator>();
 		_capsuleCollider = GetComponent<CapsuleCollider>();
+		_audioSource = GetComponent<AudioSource>();
 	}
 
 	// When this game object is enabled...
 	private void OnEnable ()
 	{
-		// ...reset the health, isSinking, and make the capsule collider solid again (it is 
-		// turned into a trigger so the enemy can sink through the ground)
+		// ...reset the health, isSinking
 		_currentHealth = _maxHealth;
 		_isSinking = false;
-		_capsuleCollider.isTrigger = false;
+		
+		//If there is an audio source, set the clip to the hurt sound
+		if(_audioSource != null) _audioSource.clip = _hurtClip;
 	}
 
 	private void Update()
@@ -72,6 +77,9 @@ public class EnemyHealth : MonoBehaviour
 
 		// If the current health is now at or below 0, the enemy is defeated
 		if (_currentHealth <= 0) Defeated();
+		
+		//If there is an audio source, play it
+		if(_audioSource != null) _audioSource.Play();
 	}
 	
 	// Accessed from an event in the enemy's Death animation
@@ -88,14 +96,13 @@ public class EnemyHealth : MonoBehaviour
 	// Called when the enemy health is reduce to 0 or lower
 	private void Defeated()
 	{
-		// Capsule collider becomes a trigger to that the enemy can sink into the ground and so that
-		// this collider won't interfere with player attacks
-		_capsuleCollider.isTrigger = true;
-
 		// Enabled the animator (in case it was disabled by a frost debuff)
 		_animator.enabled = true;
 		// Trigger the "Dead" parameter of the animator
 		_animator.SetTrigger("Dead");
+		
+		//If there is an audio source, set its clip to the death sound
+		if(_audioSource != null) _audioSource.clip = _deathClip;
 
 		// Tell the attack and movement script that the enemy has been defeated
 		_enemyAttack.Defeated();

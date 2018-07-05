@@ -7,7 +7,11 @@ public class PlayerHealth : MonoBehaviour
 {
 	[Header("Health Properties")]
 	[SerializeField]
-	private int _maxHealth = 100;				//Player's maximum health
+	private int _maxHealth = 100;				//Player's maximum health	
+	[SerializeField]
+	private AudioClip _deathClip;				//Sound clip for the player's death
+	[SerializeField]
+	private AudioClip _hurtClip;				//Audio clip of the hurt sound of the player
 
 	[Header("UI")]
 	[SerializeField]
@@ -17,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
 	
 	private PlayerMovement _playerMovement;		//Reference to the player's movement script
 	private Animator _animator;					//Reference to the animator component
+	private AudioSource _audioSource;			//Reference to the audio source component
 	
 	private int _currentHealth;					//The current health of the player
 	
@@ -29,11 +34,13 @@ public class PlayerHealth : MonoBehaviour
 		//Grab the needed component references
 		_playerMovement = GetComponent<PlayerMovement>();
 		_animator = GetComponent<Animator>();
+		_audioSource = GetComponent<AudioSource>();
 	}
 
 	private void Start()
 	{
 		_currentHealth = _maxHealth;
+		_audioSource.clip = _hurtClip;
 	}
 	
 	//---------------------------------------------------------------------
@@ -51,6 +58,9 @@ public class PlayerHealth : MonoBehaviour
 		
 		//If there is a health slider, update its value
 		if(_healthSlider != null) _healthSlider.value = _currentHealth / (float) _maxHealth;
+		
+		//If there is an audio source, tell it to play
+		if(_audioSource != null) _audioSource.Play();
 
 		if (IsAlive()) return;
 		
@@ -59,6 +69,13 @@ public class PlayerHealth : MonoBehaviour
 
 		//Set the Die parameter in the animator
 		_animator.SetTrigger("Die");
+		
+		//...if there is an audio source, assign the deathclip to it
+		if (_audioSource != null)
+		{
+			_audioSource.clip = _deathClip;
+			_audioSource.Play();
+		}
 		
 		//...finally, tell the GameManager that the player has been defeated
 		GameManager.Instance.PlayerDied();
